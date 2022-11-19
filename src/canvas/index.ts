@@ -103,10 +103,10 @@ export function animate() {
   requestAnimationFrame(animate);
 }
 
-window.onload = () => {
+window.addEventListener("load", () => {
   const selectAnimation = document.getElementById("selectAnimation") as HTMLSelectElement;
 
   selectAnimation.addEventListener("change", (e: any) => {
     playerState = e.target.value;
   });
-};
+});
