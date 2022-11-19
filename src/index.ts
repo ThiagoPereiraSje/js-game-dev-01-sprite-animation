@@ -1,9 +1,12 @@
-import "./style.css";
+import "./global.css";
+import style from "./index.module.css";
 import spritesheet from "./spritesheet.png";
 import { Frame, Animations } from "./types";
 
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
+
+canvas.className = style.canvas;
 document.body.appendChild(canvas);
 
 const CANVAS_WIDTH = (canvas.width = 600);
@@ -52,8 +55,7 @@ function animate() {
   // ctx.drawImage(playerImage, sx, sy, sw, sh, dx, dy, dw, dh); V3
 
   let position =
-    Math.floor(gameFrames / staggerFrames) %
-    spriteAnimations["idle"].loc.length;
+    Math.floor(gameFrames / staggerFrames) % spriteAnimations["idle"].loc.length;
 
   frameX = SPRITE_WIDTH * position;
 
