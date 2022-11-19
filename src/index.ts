@@ -26,6 +26,38 @@ const animationStates = [
     name: "jump",
     frames: 7,
   },
+  {
+    name: "fall",
+    frames: 7,
+  },
+  {
+    name: "run",
+    frames: 9,
+  },
+  {
+    name: "dizzy",
+    frames: 11,
+  },
+  {
+    name: "sit",
+    frames: 5,
+  },
+  {
+    name: "roll",
+    frames: 7,
+  },
+  {
+    name: "bite",
+    frames: 7,
+  },
+  {
+    name: "ko",
+    frames: 12,
+  },
+  {
+    name: "getHit",
+    frames: 4,
+  },
 ];
 
 animationStates.forEach((state, index) => {
@@ -41,12 +73,9 @@ animationStates.forEach((state, index) => {
   spriteAnimations[state.name] = frames;
 });
 
-console.log(spriteAnimations);
-
 const staggerFrames = 5;
 let gameFrames = 0;
-let frameX = 0;
-let frameY = 0;
+let playerState = "idle";
 
 function animate() {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -54,15 +83,16 @@ function animate() {
   // ctx.drawImage(playerImage, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); V2
   // ctx.drawImage(playerImage, sx, sy, sw, sh, dx, dy, dw, dh); V3
 
-  let position =
-    Math.floor(gameFrames / staggerFrames) % spriteAnimations["idle"].loc.length;
+  const position =
+    Math.floor(gameFrames / staggerFrames) % spriteAnimations[playerState].loc.length;
 
-  frameX = SPRITE_WIDTH * position;
+  const frameX = SPRITE_WIDTH * position;
+  const frameY = spriteAnimations[playerState].loc[position].y;
 
   ctx.drawImage(
     playerImage,
     frameX,
-    frameY * SPRITE_HEIGHT,
+    frameY,
     SPRITE_WIDTH,
     SPRITE_HEIGHT,
     0,
