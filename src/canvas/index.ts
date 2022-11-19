@@ -102,3 +102,11 @@ export function animate() {
   gameFrames++;
   requestAnimationFrame(animate);
 }
+
+window.onload = () => {
+  const selectAnimation = document.getElementById("selectAnimation") as HTMLSelectElement;
+
+  selectAnimation.addEventListener("change", (e: any) => {
+    playerState = e.target.value;
+  });
+};
